@@ -1,0 +1,1078 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{TechReport}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Recommender Systems}\label{recommender-systems}
+
+    This work explores the concept of recommender systems, the algorithms,
+and techniques used in their creation and exploitation, as well as
+metrics used in their evaluation. The work covers both personalized and
+non-personalized approaches, content-based and collaborative techniques,
+use of matrix factorization and hybrid techniques in modern large-scale
+recommender systems.
+
+    \subsection{Introduction}\label{introduction}
+
+    A \emph{recommender system} or a \emph{recommendation system} (sometimes
+replacing "system" with a synonym such as platform or engine) is a
+subclass of information filtering system that seeks to predict the
+"rating" or "preference" a user would give to an item
+
+    Recommender systems are utilized in a variety of areas including movies,
+music, news, books, research articles, search queries, social tags, and
+products in general. There are also recommender systems for experts,
+collaborators, jokes, restaurants, garments, financial services, life
+insurance, romantic partners (online dating), and Twitter pages.
+
+    Recommender systems typically produce a list of recommendations in one
+of two ways:
+
+\begin{itemize}
+\tightlist
+\item
+  Non-personalized approach
+\item
+  Personalized approach
+\end{itemize}
+
+    Personalized-based recommender systems also have common subtypes:
+
+\begin{itemize}
+\tightlist
+\item
+  Collaborative filtering recommender systems
+\item
+  Content-based recommender systems
+\end{itemize}
+
+    All the techniques mentioned above have their own problems and pitfalls,
+which developers face creating and applying recommender systems to
+real-world problems. They must be taken into account while designing
+system architecture, and will be covered later in this work. Though the
+field of recommendation itself is relatively old, there are still no
+solutions that work perfectly for every case. Designing and evaluating a
+recommender system is hard, and requires a deep understanding of domain
+knowledge and data available, as well as constant experimenting and
+modification. First recommender systems appeared long time ago in
+1990's, but the intense research started quite recently with the
+availability of better computational power and tremendous amounts of
+data coming from all different sources in internet.
+
+    One of the events that energized research in recommender systems was the
+Netflix Prize. From 2006 to 2009, Netflix sponsored a competition,
+offering a grand prize of \$1,000,000 to the team that could take an
+offered dataset of over 100 million movie ratings and return
+recommendations that were 10\% more accurate than those offered by the
+company's existing recommender system
+
+This competition energized the search for new and more accurate
+algorithms. The most accurate algorithm in 2007 used an ensemble method
+of 107 different algorithmic approaches, blended into a single
+prediction:
+
+\begin{quote}
+Predictive accuracy is substantially improved when blending multiple
+predictors. Our experience is that most efforts should be concentrated
+in deriving substantially different approaches, rather than refining a
+single technique. Consequently, our solution is an ensemble of many
+methods.
+\end{quote}
+
+    Beside classical approaches to recommendation with techniques described
+above, there are a lot of different cases that require modifications or
+special settings:
+
+\begin{itemize}
+\tightlist
+\item
+  Group recommender systems
+\item
+  Context-aware recommender systems
+\item
+  Risk-aware recommender systems
+\end{itemize}
+
+    \subsection{Common notation}\label{common-notation}
+
+    For convenience, we are going to use the same notation across this work:
+
+    \subsubsection{Basic objects}\label{basic-objects}
+
+    We need a way to talk about users, items, and the ratings matrix
+
+\(I\) - the set of items.
+
+\(U\) - the set of users.
+
+\(R\) - the ratings matrix or set of ratings.
+
+\(u, v \in U\) - individual user.
+
+\(i, j \in I\) - individual item.
+
+\(r_{ui} \in R\) - a rating given by user \(u\) for item \(i\).
+
+\(R_{u} \subset R\) - the set of ratings given by user \(u\).
+
+\(R_{i} \subset R\) - the set of ratings given for item \(i\).
+
+\(\vec{r_{u}}\) or \(r_{u}\) - the ratings given by user \(u\), as a
+vector with missing values for unrated items. We will often work with a
+normalized vector \(\hat{r_{u}}\).
+
+\(\vec{r_{i}}\) or \(r_{i}\) - the ratings given for item \(i\), as a
+vector with missing values for unrated items.
+
+    \subsubsection{Scoring and ordering}\label{scoring-and-ordering}
+
+    We are going to use it to describe scoring algorithms.
+
+\(s(i; u)\) - the score for item \(i\) for user \(u\).
+
+\(s(i; u,q,x)\) - the score for item \(i\) for user \(u\) with query
+\(q\) in context \(x\).
+
+\(O(I; u,q,x)\) - the ordering for items \(I\) for user \(u\) with query
+\(q\) in context \(x\).
+
+    \subsubsection{Matrix factorization}\label{matrix-factorization}
+
+    Notation for SVD and other decomposition techniques.
+
+\(R = P\Sigma Q^{T}\) - a factorization of the ratings matrix \(R\) into
+a \(|U| \times k\) user-feature preference matrix \(P\) and a
+\(|I| \times k\) item-feature relevance matrix \(Q\).
+
+\(\vec{p_{u}}\) or \(p_{u}\) - the user feature vector over latent
+features.
+
+\(\vec{q_{i}}\) or \(q_{i}\) - the item feature vector.
+
+    Background work Design Methodology Implementation Results
+
+Conclusion
+
+    \subsubsection{Non-personalized
+Recommendation}\label{non-personalized-recommendation}
+
+    Though non-personalized recommenders are rarely used in modern systems
+by themselves, they are still very powerful in combination with other
+algorithms, and, sometimes, the only available option.
+
+How can we make a recommendation for a user that we have little or no
+data about?
+
+That's where stereotype-based recommendations can be made, and most of
+the times we can take into account:
+
+\begin{itemize}
+\tightlist
+\item
+  items popularity
+\item
+  user demographic data
+\item
+  user actions during that particular session (for example, items in
+  online-shop basket)
+\end{itemize}
+
+    \paragraph{Mean-based recommendation:}\label{mean-based-recommendation}
+
+    One of the common approaches we can use is mean-based recommendation.
+
+Basic mean is computed using the following formula:
+\[\mu = \frac{\Sigma_{u \in U_{i}}r_{ui}}{|U_{i}|}\]
+
+    And can be used for recommending items with the highest rating. However,
+in order to make our recommendations more stable, we can use "damped"
+mean algorithm and add some "fake" global mean rating to our score.
+
+    \[s(i) = \frac{\Sigma_{u \in U_{i}}r_{ui} + \alpha\mu}{|U_{i}| + \alpha}\]
+
+    Where \(\alpha\) is a damping parameter, which represents the number of
+"fake" ratings we are adding. Because of that damping factor,
+recommender become less tend to make extreme recommendations.
+
+    \paragraph{Associative rule
+recommendation:}\label{associative-rule-recommendation}
+
+    This approach is used to recommend items that are related to chosen one
+("People who buy this also bought...") and, therefore, uses
+\emph{reference item} to provide recommendations.
+
+    The association rule formula is derived from Bayes theorem:
+
+\[P(i|j) = \frac{P(i \vee j)}{P(j)}\]
+
+    In this case, \emph{j} is the \emph{reference item}, and \emph{i} is an
+item to be scored.
+
+    We estimate probabilities by counting: \(P (i)\) is the fraction of
+users in the system who purchased item i; \(P(i\vee j)\) is the fraction
+that purchased both \(i\) and \(j\)
+
+    \[P(i|j) = \frac{P(i \vee j)}{P(j)} = \frac{|U_{i} \cap U{j}|/|U|}{|U_{j}| / |U|}\]
+
+    The advanced version of this rule computes how much more likely someone
+is to rate an item \(i\) when they rated \(j\) than they would have if
+we do not know anything about whether they have rated \(j\):
+
+\[P(i|j) = \frac{P(i \vee j)}{P(i)P(j)}\]
+
+    The following Python code produces some example of non-personalized data
+analysis based on Movie Lens movie ratings dataset:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} import libraries for data exploration and basic statistical functions}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HW1\PYZhy{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{data}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}     User  Gender (1 =F, 0=M)  260: Star Wars: Episode IV - A New Hope (1977)  \textbackslash{}
+        0    755                   0                                             1.0   
+        1   5277                   0                                             5.0   
+        2   1577                   1                                             NaN   
+        3   4388                   0                                             NaN   
+        4   1202                   1                                             4.0   
+        5   3823                   1                                             2.0   
+        6   5448                   0                                             NaN   
+        7   5347                   0                                             4.0   
+        8   4117                   1                                             5.0   
+        9   2765                   0                                             4.0   
+        10  5450                   1                                             2.0   
+        11   139                   0                                             3.0   
+        12  1940                   0                                             2.0   
+        13  3118                   1                                             3.0   
+        14  4656                   1                                             4.0   
+        15  4796                   1                                             NaN   
+        16  6037                   0                                             NaN   
+        17  3048                   1                                             4.0   
+        18  4790                   0                                             5.0   
+        19  4489                   0                                             1.0   
+        
+            1210: Star Wars: Episode VI - Return of the Jedi (1983)  \textbackslash{}
+        0                                                 5.0         
+        1                                                 3.0         
+        2                                                 NaN         
+        3                                                 3.0         
+        4                                                 3.0         
+        5                                                 4.0         
+        6                                                 NaN         
+        7                                                 NaN         
+        8                                                 1.0         
+        9                                                 2.0         
+        10                                                1.0         
+        11                                                5.0         
+        12                                                3.0         
+        13                                                NaN         
+        14                                                4.0         
+        15                                                NaN         
+        16                                                NaN         
+        17                                                5.0         
+        18                                                1.0         
+        19                                                2.0         
+        
+            356: Forrest Gump (1994)  318: Shawshank Redemption, The (1994)  \textbackslash{}
+        0                        2.0                                    NaN   
+        1                        NaN                                    2.0   
+        2                        NaN                                    5.0   
+        3                        NaN                                    NaN   
+        4                        4.0                                    1.0   
+        5                        4.0                                    4.0   
+        6                        3.0                                    1.0   
+        7                        NaN                                    NaN   
+        8                        NaN                                    4.0   
+        9                        NaN                                    5.0   
+        10                       5.0                                    NaN   
+        11                       2.0                                    NaN   
+        12                       NaN                                    5.0   
+        13                       3.0                                    NaN   
+        14                       NaN                                    NaN   
+        15                       1.0                                    NaN   
+        16                       NaN                                    NaN   
+        17                       1.0                                    5.0   
+        18                       NaN                                    NaN   
+        19                       2.0                                    4.0   
+        
+            593: Silence of the Lambs, The (1991)  3578: Gladiator (2000)  \textbackslash{}
+        0                                     4.0                     4.0   
+        1                                     4.0                     2.0   
+        2                                     2.0                     NaN   
+        3                                     NaN                     1.0   
+        4                                     4.0                     1.0   
+        5                                     NaN                     NaN   
+        6                                     1.0                     4.0   
+        7                                     3.0                     2.0   
+        8                                     2.0                     4.0   
+        9                                     3.0                     NaN   
+        10                                    NaN                     5.0   
+        11                                    2.0                     NaN   
+        12                                    4.0                     NaN   
+        13                                    2.0                     NaN   
+        14                                    5.0                     5.0   
+        15                                    3.0                     2.0   
+        16                                    4.0                     NaN   
+        17                                    1.0                     1.0   
+        18                                    NaN                     4.0   
+        19                                    5.0                     NaN   
+        
+            1: Toy Story (1995)  2028: Saving Private Ryan (1998)       {\ldots}         \textbackslash{}
+        0                   2.0                               2.0       {\ldots}          
+        1                   1.0                               NaN       {\ldots}          
+        2                   4.0                               NaN       {\ldots}          
+        3                   2.0                               3.0       {\ldots}          
+        4                   NaN                               4.0       {\ldots}          
+        5                   3.0                               1.0       {\ldots}          
+        6                   NaN                               5.0       {\ldots}          
+        7                   2.0                               NaN       {\ldots}          
+        8                   4.0                               4.0       {\ldots}          
+        9                   4.0                               3.0       {\ldots}          
+        10                  5.0                               NaN       {\ldots}          
+        11                  2.0                               NaN       {\ldots}          
+        12                  4.0                               5.0       {\ldots}          
+        13                  3.0                               NaN       {\ldots}          
+        14                  2.0                               NaN       {\ldots}          
+        15                  NaN                               2.0       {\ldots}          
+        16                  2.0                               NaN       {\ldots}          
+        17                  4.0                               NaN       {\ldots}          
+        18                  2.0                               1.0       {\ldots}          
+        19                  2.0                               3.0       {\ldots}          
+        
+            2396: Shakespeare in Love (1998)  2916: Total Recall (1990)  \textbackslash{}
+        0                                2.0                        NaN   
+        1                                3.0                        2.0   
+        2                                NaN                        1.0   
+        3                                NaN                        4.0   
+        4                                5.0                        1.0   
+        5                                5.0                        2.0   
+        6                                1.0                        NaN   
+        7                                NaN                        2.0   
+        8                                2.0                        3.0   
+        9                                NaN                        NaN   
+        10                               NaN                        3.0   
+        11                               3.0                        NaN   
+        12                               NaN                        2.0   
+        13                               NaN                        1.0   
+        14                               NaN                        1.0   
+        15                               5.0                        NaN   
+        16                               2.0                        NaN   
+        17                               NaN                        NaN   
+        18                               3.0                        1.0   
+        19                               1.0                        NaN   
+        
+            780: Independence Day (ID4) (1996)  541: Blade Runner (1982)  \textbackslash{}
+        0                                  5.0                       2.0   
+        1                                  2.0                       NaN   
+        2                                  4.0                       4.0   
+        3                                  1.0                       3.0   
+        4                                  NaN                       4.0   
+        5                                  4.0                       NaN   
+        6                                  NaN                       3.0   
+        7                                  3.0                       2.0   
+        8                                  1.0                       NaN   
+        9                                  2.0                       NaN   
+        10                                 2.0                       NaN   
+        11                                 3.0                       NaN   
+        12                                 4.0                       NaN   
+        13                                 2.0                       2.0   
+        14                                 3.0                       NaN   
+        15                                 NaN                       NaN   
+        16                                 NaN                       NaN   
+        17                                 NaN                       4.0   
+        18                                 NaN                       NaN   
+        19                                 NaN                       5.0   
+        
+            1265: Groundhog Day (1993)  2571: Matrix, The (1999)  \textbackslash{}
+        0                          NaN                       4.0   
+        1                          2.0                       NaN   
+        2                          1.0                       1.0   
+        3                          5.0                       NaN   
+        4                          NaN                       3.0   
+        5                          1.0                       NaN   
+        6                          NaN                       1.0   
+        7                          4.0                       NaN   
+        8                          5.0                       NaN   
+        9                          NaN                       2.0   
+        10                         NaN                       1.0   
+        11                         2.0                       5.0   
+        12                         3.0                       NaN   
+        13                         3.0                       5.0   
+        14                         2.0                       NaN   
+        15                         5.0                       2.0   
+        16                         NaN                       4.0   
+        17                         NaN                       NaN   
+        18                         NaN                       2.0   
+        19                         5.0                       4.0   
+        
+            527: Schindler's List (1993)  2762: Sixth Sense, The (1999)  \textbackslash{}
+        0                            2.0                            5.0   
+        1                            5.0                            1.0   
+        2                            2.0                            3.0   
+        3                            5.0                            1.0   
+        4                            5.0                            5.0   
+        5                            NaN                            3.0   
+        6                            NaN                            NaN   
+        7                            1.0                            3.0   
+        8                            NaN                            NaN   
+        9                            5.0                            1.0   
+        10                           NaN                            2.0   
+        11                           NaN                            NaN   
+        12                           NaN                            NaN   
+        13                           1.0                            NaN   
+        14                           3.0                            NaN   
+        15                           2.0                            4.0   
+        16                           NaN                            NaN   
+        17                           2.0                            1.0   
+        18                           NaN                            NaN   
+        19                           3.0                            5.0   
+        
+            1198: Raiders of the Lost Ark (1981)  34: Babe (1995)  
+        0                                    NaN              NaN  
+        1                                    3.0              NaN  
+        2                                    1.0              3.0  
+        3                                    1.0              2.0  
+        4                                    NaN              NaN  
+        5                                    NaN              2.0  
+        6                                    5.0              2.0  
+        7                                    5.0              NaN  
+        8                                    NaN              5.0  
+        9                                    NaN              NaN  
+        10                                   1.0              4.0  
+        11                                   NaN              2.0  
+        12                                   5.0              NaN  
+        13                                   NaN              NaN  
+        14                                   3.0              1.0  
+        15                                   3.0              4.0  
+        16                                   NaN              NaN  
+        17                                   2.0              5.0  
+        18                                   NaN              NaN  
+        19                                   3.0              NaN  
+        
+        [20 rows x 22 columns]
+\end{Verbatim}
+            
+    Let's first calculate top movies by mean score:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Top movies by mean score}
+        \PY{n}{means} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{means}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 318: Shawshank Redemption, The (1994)                      3.600000
+        260: Star Wars: Episode IV - A New Hope (1977)             3.266667
+        541: Blade Runner (1982)                                   3.222222
+        1265: Groundhog Day (1993)                                 3.166667
+        593: Silence of the Lambs, The (1991)                      3.062500
+        296: Pulp Fiction (1994)                                   3.000000
+        1210: Star Wars: Episode VI - Return of the Jedi (1983)    3.000000
+        2028: Saving Private Ryan (1998)                           3.000000
+        34: Babe (1995)                                            3.000000
+        527: Schindler's List (1993)                               3.000000
+        3578: Gladiator (2000)                                     2.916667
+        2396: Shakespeare in Love (1998)                           2.909091
+        1198: Raiders of the Lost Ark (1981)                       2.909091
+        2571: Matrix, The (1999)                                   2.833333
+        2762: Sixth Sense, The (1999)                              2.833333
+        1: Toy Story (1995)                                        2.823529
+        780: Independence Day (ID4) (1996)                         2.769231
+        356: Forrest Gump (1994)                                   2.700000
+        1259: Stand by Me (1986)                                   2.636364
+        2916: Total Recall (1990)                                  1.916667
+        dtype: float64
+\end{Verbatim}
+            
+    And rating counts:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Counts}
+         \PY{n}{counts} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{n}{counts}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} 1: Toy Story (1995)                                        17
+         593: Silence of the Lambs, The (1991)                      16
+         260: Star Wars: Episode IV - A New Hope (1977)             15
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    14
+         780: Independence Day (ID4) (1996)                         13
+         2762: Sixth Sense, The (1999)                              12
+         527: Schindler's List (1993)                               12
+         2571: Matrix, The (1999)                                   12
+         1265: Groundhog Day (1993)                                 12
+         2916: Total Recall (1990)                                  12
+         3578: Gladiator (2000)                                     12
+         2028: Saving Private Ryan (1998)                           11
+         1259: Stand by Me (1986)                                   11
+         296: Pulp Fiction (1994)                                   11
+         1198: Raiders of the Lost Ark (1981)                       11
+         2396: Shakespeare in Love (1998)                           11
+         318: Shawshank Redemption, The (1994)                      10
+         356: Forrest Gump (1994)                                   10
+         34: Babe (1995)                                            10
+         541: Blade Runner (1982)                                    9
+         dtype: int64
+\end{Verbatim}
+            
+    Sometimes, we do not need to know precise rating to make recommendation.
+Therefore, we can define some ratings as positive (in this example, all
+the ratings \textgreater{}= 4):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Top movies by percentage of positive marks}
+         \PY{n}{counts\PYZus{}positive} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{n}{counts\PYZus{}positive}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{p}{(}\PY{n}{counts\PYZus{}positive} \PY{o}{/} \PY{n}{counts}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 318: Shawshank Redemption, The (1994)                      0.700000
+         260: Star Wars: Episode IV - A New Hope (1977)             0.533333
+         3578: Gladiator (2000)                                     0.500000
+         541: Blade Runner (1982)                                   0.444444
+         593: Silence of the Lambs, The (1991)                      0.437500
+         2571: Matrix, The (1999)                                   0.416667
+         1265: Groundhog Day (1993)                                 0.416667
+         34: Babe (1995)                                            0.400000
+         296: Pulp Fiction (1994)                                   0.363636
+         2028: Saving Private Ryan (1998)                           0.363636
+         1259: Stand by Me (1986)                                   0.363636
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    0.357143
+         1: Toy Story (1995)                                        0.352941
+         527: Schindler's List (1993)                               0.333333
+         2762: Sixth Sense, The (1999)                              0.333333
+         780: Independence Day (ID4) (1996)                         0.307692
+         356: Forrest Gump (1994)                                   0.300000
+         2396: Shakespeare in Love (1998)                           0.272727
+         1198: Raiders of the Lost Ark (1981)                       0.272727
+         2916: Total Recall (1990)                                  0.083333
+         dtype: float64
+\end{Verbatim}
+            
+    Let's imagine we watched the movie "Toy Story" and we want to have a
+list of relevant movies to watch next. We can apply association rule
+here:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} Percentage of people who watched Toy Story also watched...}
+         \PY{n}{associative\PYZus{}product} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1: Toy Story (1995)}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{n}{watched\PYZus{}product} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{associative\PYZus{}product}\PY{p}{]}\PY{o}{.}\PY{n}{notnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{p}{(}\PY{n}{watched\PYZus{}product} \PY{o}{/} \PY{n}{data}\PY{p}{[}\PY{n}{associative\PYZus{}product}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 1: Toy Story (1995)                                        1.000000
+         260: Star Wars: Episode IV - A New Hope (1977)             0.823529
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    0.764706
+         593: Silence of the Lambs, The (1991)                      0.764706
+         780: Independence Day (ID4) (1996)                         0.764706
+         1265: Groundhog Day (1993)                                 0.647059
+         2916: Total Recall (1990)                                  0.647059
+         296: Pulp Fiction (1994)                                   0.588235
+         2762: Sixth Sense, The (1999)                              0.588235
+         527: Schindler's List (1993)                               0.588235
+         3578: Gladiator (2000)                                     0.529412
+         1259: Stand by Me (1986)                                   0.529412
+         1198: Raiders of the Lost Ark (1981)                       0.529412
+         2571: Matrix, The (1999)                                   0.529412
+         2028: Saving Private Ryan (1998)                           0.470588
+         2396: Shakespeare in Love (1998)                           0.470588
+         318: Shawshank Redemption, The (1994)                      0.470588
+         34: Babe (1995)                                            0.470588
+         541: Blade Runner (1982)                                   0.411765
+         356: Forrest Gump (1994)                                   0.411765
+         dtype: float64
+\end{Verbatim}
+            
+    Beside association, we can also define similarity by basically measuring
+products corellation:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Correlation between Toy Story and other movie ratings}
+         \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{corrwith}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{associative\PYZus{}product}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 1: Toy Story (1995)                                        1.000000
+         318: Shawshank Redemption, The (1994)                      0.888523
+         34: Babe (1995)                                            0.811107
+         296: Pulp Fiction (1994)                                   0.709842
+         2028: Saving Private Ryan (1998)                           0.596849
+         356: Forrest Gump (1994)                                   0.522913
+         541: Blade Runner (1982)                                   0.329634
+         3578: Gladiator (2000)                                     0.253396
+         2916: Total Recall (1990)                                  0.163796
+         2396: Shakespeare in Love (1998)                           0.101768
+         1265: Groundhog Day (1993)                                -0.062858
+         780: Independence Day (ID4) (1996)                        -0.069923
+         260: Star Wars: Episode IV - A New Hope (1977)            -0.119005
+         527: Schindler's List (1993)                              -0.220315
+         2762: Sixth Sense, The (1999)                             -0.245770
+         1198: Raiders of the Lost Ark (1981)                      -0.309067
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)   -0.314504
+         593: Silence of the Lambs, The (1991)                     -0.568258
+         1259: Stand by Me (1986)                                  -0.610300
+         2571: Matrix, The (1999)                                  -0.721995
+         dtype: float64
+\end{Verbatim}
+            
+    Making recommendations above, we did not use data about user's gender.
+Statistically, men and women tend to like or dislike different kinds of
+movies, so, in order to make non-personalized recommendations more
+precise, we can take this information into account and see the
+difference:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Means separate by gender}
+         \PY{n}{gender\PYZus{}column\PYZus{}name} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender (1 =F, 0=M)}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{male\PYZus{}means} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{female\PYZus{}means} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Male means}
+         \PY{n}{male\PYZus{}means}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 1198: Raiders of the Lost Ark (1981)                       3.666667
+         527: Schindler's List (1993)                               3.500000
+         1265: Groundhog Day (1993)                                 3.500000
+         318: Shawshank Redemption, The (1994)                      3.400000
+         593: Silence of the Lambs, The (1991)                      3.333333
+         2571: Matrix, The (1999)                                   3.142857
+         2028: Saving Private Ryan (1998)                           3.142857
+         260: Star Wars: Episode IV - A New Hope (1977)             3.125000
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    3.000000
+         1259: Stand by Me (1986)                                   3.000000
+         541: Blade Runner (1982)                                   3.000000
+         780: Independence Day (ID4) (1996)                         2.857143
+         3578: Gladiator (2000)                                     2.833333
+         2762: Sixth Sense, The (1999)                              2.666667
+         296: Pulp Fiction (1994)                                   2.625000
+         1: Toy Story (1995)                                        2.300000
+         356: Forrest Gump (1994)                                   2.250000
+         2916: Total Recall (1990)                                  2.200000
+         2396: Shakespeare in Love (1998)                           2.142857
+         34: Babe (1995)                                            2.000000
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}Female means}
+         \PY{n}{female\PYZus{}means}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 2396: Shakespeare in Love (1998)                           4.250000
+         296: Pulp Fiction (1994)                                   4.000000
+         318: Shawshank Redemption, The (1994)                      3.800000
+         1: Toy Story (1995)                                        3.571429
+         541: Blade Runner (1982)                                   3.500000
+         34: Babe (1995)                                            3.428571
+         260: Star Wars: Episode IV - A New Hope (1977)             3.428571
+         3578: Gladiator (2000)                                     3.000000
+         2762: Sixth Sense, The (1999)                              3.000000
+         356: Forrest Gump (1994)                                   3.000000
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    3.000000
+         1265: Groundhog Day (1993)                                 2.833333
+         2028: Saving Private Ryan (1998)                           2.750000
+         593: Silence of the Lambs, The (1991)                      2.714286
+         780: Independence Day (ID4) (1996)                         2.666667
+         527: Schindler's List (1993)                               2.500000
+         1259: Stand by Me (1986)                                   2.428571
+         2571: Matrix, The (1999)                                   2.400000
+         1198: Raiders of the Lost Ark (1981)                       2.000000
+         2916: Total Recall (1990)                                  1.714286
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} Overall mean ratings }
+         \PY{n}{male\PYZus{}average\PYZus{}mean} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+         \PY{n}{female\PYZus{}average\PYZus{}mean} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{gender\PYZus{}column\PYZus{}name}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Male avg. mean: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ Female avg. mean: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{male\PYZus{}average\PYZus{}mean}\PY{p}{,} \PY{n}{female\PYZus{}average\PYZus{}mean}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Male avg. mean: 2.905511811023622 Female avg. mean: 2.9473684210526314
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} Movies that female users rate highest above male raters}
+         
+         \PY{p}{(}\PY{n}{female\PYZus{}means} \PY{o}{\PYZhy{}} \PY{n}{male\PYZus{}means}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 2396: Shakespeare in Love (1998)                           2.107143
+         34: Babe (1995)                                            1.428571
+         296: Pulp Fiction (1994)                                   1.375000
+         1: Toy Story (1995)                                        1.271429
+         356: Forrest Gump (1994)                                   0.750000
+         541: Blade Runner (1982)                                   0.500000
+         318: Shawshank Redemption, The (1994)                      0.400000
+         2762: Sixth Sense, The (1999)                              0.333333
+         260: Star Wars: Episode IV - A New Hope (1977)             0.303571
+         3578: Gladiator (2000)                                     0.166667
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    0.000000
+         780: Independence Day (ID4) (1996)                        -0.190476
+         2028: Saving Private Ryan (1998)                          -0.392857
+         2916: Total Recall (1990)                                 -0.485714
+         1259: Stand by Me (1986)                                  -0.571429
+         593: Silence of the Lambs, The (1991)                     -0.619048
+         1265: Groundhog Day (1993)                                -0.666667
+         2571: Matrix, The (1999)                                  -0.742857
+         527: Schindler's List (1993)                              -1.000000
+         1198: Raiders of the Lost Ark (1981)                      -1.666667
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Movies that male users rate highest above female raters}
+         
+         \PY{p}{(}\PY{n}{male\PYZus{}means} \PY{o}{\PYZhy{}} \PY{n}{female\PYZus{}means}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 1198: Raiders of the Lost Ark (1981)                       1.666667
+         527: Schindler's List (1993)                               1.000000
+         2571: Matrix, The (1999)                                   0.742857
+         1265: Groundhog Day (1993)                                 0.666667
+         593: Silence of the Lambs, The (1991)                      0.619048
+         1259: Stand by Me (1986)                                   0.571429
+         2916: Total Recall (1990)                                  0.485714
+         2028: Saving Private Ryan (1998)                           0.392857
+         780: Independence Day (ID4) (1996)                         0.190476
+         1210: Star Wars: Episode VI - Return of the Jedi (1983)    0.000000
+         3578: Gladiator (2000)                                    -0.166667
+         260: Star Wars: Episode IV - A New Hope (1977)            -0.303571
+         2762: Sixth Sense, The (1999)                             -0.333333
+         318: Shawshank Redemption, The (1994)                     -0.400000
+         541: Blade Runner (1982)                                  -0.500000
+         356: Forrest Gump (1994)                                  -0.750000
+         1: Toy Story (1995)                                       -1.271429
+         296: Pulp Fiction (1994)                                  -1.375000
+         34: Babe (1995)                                           -1.428571
+         2396: Shakespeare in Love (1998)                          -2.107143
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Difference between the average rating overall}
+         
+         \PY{n}{female\PYZus{}average\PYZus{}mean} \PY{o}{\PYZhy{}} \PY{n}{male\PYZus{}average\PYZus{}mean}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} 0.0418566100290092
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

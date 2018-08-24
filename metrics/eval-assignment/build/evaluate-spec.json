@@ -1,0 +1,46 @@
+{
+    "output_file": "eval-results.csv",
+    "user_output_file": "eval-users.csv",
+    "cache_directory": null,
+    "thread_count": 0,
+    "share_model_components": true,
+    "datasets": [
+        "crossfold.out/datasets.yaml"
+    ],
+    "algorithms": {
+        "user-user": "../cfg/user-user.groovy",
+        "baselines": "../cfg/baselines.groovy"
+    },
+    "tasks": [
+        {
+            "type": "predict",
+            "output_file": null,
+            "metrics": [
+                "coverage",
+                "rmse",
+                "ndcg"
+            ]
+        },
+        {
+            "type": "recommend",
+            "output_file": null,
+            "metrics": [
+                "length",
+                "ndcg",
+                {
+                    "type": "mrr",
+                    "goodItems": "user.testItems"
+                },
+                {
+                    "type": "map",
+                    "goodItems": "user.testItems"
+                },
+                "org.lenskit.mooc.TagEntropyMetric"
+            ],
+            "list_size": 10,
+            "candidates": "allItems",
+            "exclude": "user.trainItems",
+            "label_prefix": null
+        }
+    ]
+}
